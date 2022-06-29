@@ -2,9 +2,12 @@
 
 ## bootstrap
 
-```shell 
-flux bootstrap git \
-  --url=ssh://git@github.com/dtrinf/flux_platform.git \
+```shell  
+flux bootstrap github \
+  --token-auth \
+  --hostname=github.com \           
+  --owner=dtrinf \  
+  --repository=flux_platform \
   --branch=main \
-  --path=./clusters/{{cluster-name}}
+  --path=clusters/{{cluster-name}}
 ```
