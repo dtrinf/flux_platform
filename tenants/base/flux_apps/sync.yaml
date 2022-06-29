@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: flux_apps
+  name: flux-apps
   namespace: apps
 spec:
   interval: 1m
@@ -12,13 +12,13 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: flux_apps
+  name: flux-apps
   namespace: apps
 spec:
-  serviceAccountName: flux_apps
+  serviceAccountName: flux-apps
   interval: 5m
   sourceRef:
     kind: GitRepository
-    name: flux_apps
+    name: flux-apps
   prune: true
   validation: client
