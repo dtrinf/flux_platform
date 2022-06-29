@@ -12,7 +12,7 @@ kind: ServiceAccount
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: flux_apps
-  name: flux_apps
+  name: flux-apps
   namespace: apps
 
 ---
@@ -31,5 +31,5 @@ subjects:
 - kind: User
   name: gotk:apps:reconciler
 - kind: ServiceAccount
-  name: flux_apps
+  name: flux-apps
   namespace: apps
