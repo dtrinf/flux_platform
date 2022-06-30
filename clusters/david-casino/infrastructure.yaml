@@ -11,7 +11,6 @@ spec:
   serviceAccountName: kustomize-controller
   path: ./infrastructure/ingress-controller-internal
   prune: true
-  wait: true
   timeout: 10m
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
