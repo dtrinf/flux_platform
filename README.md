@@ -35,3 +35,10 @@ flux create source git flux-monitoring \
   --branch=main \
   --export > flux-monitoring-repository.yaml
 ```
+
+## SLACK notifications
+
+``` shell
+kubectl -n flux-system create secret generic slack-url \
+  --from-literal=address={{slack_url}}
+```
