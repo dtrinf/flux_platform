@@ -26,7 +26,7 @@ spec:
     serviceAccount:
       create: true
       annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::160259387244:oidc-provider/oidc.eks.eu-west-1.amazonaws.com/id/23E7738ED0291A742819BBE7BD6241E2"
+        eks.amazonaws.com/role-arn: "arn:aws:iam::160259387244:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS"
     securityContext:
       enabled: true
       fsGroup: 65534
