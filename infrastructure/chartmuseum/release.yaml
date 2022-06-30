@@ -26,7 +26,7 @@ spec:
     serviceAccount:
       create: true
       annotations:
-        eks.amazonaws.com/role-arn: "arn:aws:iam::160259387244:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS"
+        eks.amazonaws.com/role-arn: "role-arn"
     securityContext:
       enabled: true
       fsGroup: 65534
