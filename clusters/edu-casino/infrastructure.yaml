@@ -74,3 +74,18 @@ spec:
   path: ./infrastructure/ingress-controller-external
   prune: true
   timeout: 10m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: chartmuseum
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/chartmuseum
+  prune: true
+  timeout: 10m
