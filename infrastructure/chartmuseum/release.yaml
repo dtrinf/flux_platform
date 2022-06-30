@@ -30,3 +30,13 @@ spec:
     securityContext:
       enabled: true
       fsGroup: 65534
+
+# ---
+# apiVersion: source.toolkit.fluxcd.io/v1beta2
+# kind: HelmRepository
+# metadata:
+#   name: helm-charts
+#   namespace: flux-system
+# spec:
+#   interval: 1m
+#   url: http://chartmuseum-chartmuseum:8080
