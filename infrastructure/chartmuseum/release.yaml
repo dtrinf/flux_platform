@@ -1,0 +1,32 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: chartmuseum
+  namespace: flux-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: chartmuseum
+      version: "2.14.2"
+      sourceRef:
+        kind: HelmRepository
+        name: chartmuseum
+        namespace: flux-system
+      interval: 1m
+  values:
+    env:
+      open:
+        AWS_SDK_LOAD_CONFIG: true
+        STORAGE: amazon
+        STORAGE_AMAZON_BUCKET: "lifebit-helm-repository"
+        STORAGE_AMAZON_PREFIX: ""
+        STORAGE_AMAZON_REGION: "eu-west-1"
+    serviceAccount:
+      create: true
+      annotations:
+        eks.amazonaws.com/role-arn: "arn:aws:iam::529661837159:role/cross-acc-helm"
+    securityContext:
+      enabled: true
+      fsGroup: 65534
