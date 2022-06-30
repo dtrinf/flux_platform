@@ -43,3 +43,34 @@
 #   serviceAccountName: kustomize-controller
 #   path: ./infrastructure/sealed
 #   prune: true
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: ingress-internal
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/ingress-controller-internal
+  prune: true
+  wait: true
+  timeout: 10m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: ingress-external
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/ingress-controller-external
+  prune: true
+  timeout: 10m
