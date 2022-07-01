@@ -37,7 +37,6 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
-      enabled: true
       config:
         ingress:
           enabled: true
