@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - flux-monitoring-repository.yaml
   - flux-monitoring-prometheus-release.yaml
-  - flux-monitoring-grafana-release.yaml
-  - flux-monitoring-loki-release.yaml
+  # - flux-monitoring-grafana-release.yaml
+  # - flux-monitoring-loki-release.yaml
   # - flux-monitoring-release.yaml
   
