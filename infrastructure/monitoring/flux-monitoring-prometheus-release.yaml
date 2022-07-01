@@ -43,7 +43,8 @@ spec:
           kubernetes.io/ingress.class: nginx-internal
         hosts: 
         - prometheus.eks.pro.eorozco.lifebit.ai
-        paths: /
+        paths: 
+        - /
       prometheusSpec:
         retention: 24h
         resources:
