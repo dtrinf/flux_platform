@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: ecr-sync
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  path: ./manifests/integrations/registry-credentials-sync/aws
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-ecr-sync
+  timeout: 1m0s
+  wait: true
