@@ -4,4 +4,5 @@ resources:
   - flux-monitoring-grafana-release.yaml
   - flux-monitoring-repository.yaml
   - flux-monitoring-loki-release.yaml
-  - flux-monitoring-release.yaml
+  # - flux-monitoring-release.yaml
+  - flux-monitoring-prometheus-release.yaml
