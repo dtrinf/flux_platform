@@ -36,13 +36,31 @@ spec:
     crds: CreateReplace
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
+    alertmanager:
+      ingress:
+        enabled: true
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts: 
+        - alertmanager.pro.eorozco.lifebit.ai
+        paths: 
+        - /
+    grafana:
+      ingress:
+        enabled: true
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts: 
+        - grafana.pro.eorozco.lifebit.ai
+        paths: 
+        - /
     prometheus:
       ingress:
         enabled: true
         annotations: 
           kubernetes.io/ingress.class: nginx-external
         hosts: 
-        - prometheus.eks.pro.eorozco.lifebit.ai
+        - prometheus.pro.eorozco.lifebit.ai
         paths: 
         - /
       prometheusSpec:
