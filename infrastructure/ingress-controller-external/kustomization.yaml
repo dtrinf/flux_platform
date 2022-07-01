@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - helm-repository.yaml
-# patchesStrategicMerge:
-#   - values.yaml
