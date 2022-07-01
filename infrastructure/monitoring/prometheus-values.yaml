@@ -6,7 +6,6 @@ metadata:
 spec:
   values:
     alertmanager:
-      enabled: true
       config:
         ingress:
           enabled: true

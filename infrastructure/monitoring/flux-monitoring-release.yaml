@@ -13,4 +13,8 @@ spec:
     name: flux-monitoring
   timeout: 5m0s
   wait: true
+  values:
+    alertmanager:
+      enabled: true
+  
 
