@@ -13,33 +13,33 @@ spec:
     name: flux-monitoring
   timeout: 5m0s
   wait: true
-  values:
-    alertmanager:
-      enabled: true
-      config:
-        ingress:
-          enabled: true
-          annotations: 
-            kubernetes.io/ingress.class: nginx-external
-          hosts: 
-          - "alertmanager.eks.pro.eorozco.lifebit.ai"
-          paths: /
-    prometheus:
-      config:
-        ingress:
-          enabled: true
-          annotations: 
-            kubernetes.io/ingress.class: nginx-external
-          hosts: 
-          - "prometheus.eks.pro.eorozco.lifebit.ai"
-          paths: /
-    grafana:
-      config:
-        ingress:
-          enabled: true
-          annotations: 
-            kubernetes.io/ingress.class: nginx-external
-          hosts: []
-          paths: /grafana/
+  # values:
+  #   alertmanager:
+  #     enabled: true
+  #     config:
+  #       ingress:
+  #         enabled: true
+  #         annotations: 
+  #           kubernetes.io/ingress.class: nginx-external
+  #         hosts: 
+  #         - "alertmanager.eks.pro.eorozco.lifebit.ai"
+  #         paths: /
+  #   prometheus:
+  #     config:
+  #       ingress:
+  #         enabled: true
+  #         annotations: 
+  #           kubernetes.io/ingress.class: nginx-external
+  #         hosts: 
+  #         - "prometheus.eks.pro.eorozco.lifebit.ai"
+  #         paths: /
+  #   grafana:
+  #     config:
+  #       ingress:
+  #         enabled: true
+  #         annotations: 
+  #           kubernetes.io/ingress.class: nginx-external
+  #         hosts: []
+  #         paths: /grafana/
   
 
