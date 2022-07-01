@@ -5,9 +5,7 @@ metadata:
   namespace: ingress-external
 spec:
   values:
-
     controller:
-
       ingressClassResource:
         # -- Name of the ingressClass
         name: nginx-internal
@@ -18,6 +16,13 @@ spec:
       # -- For backwards compatibility with ingress.class annotation, use ingressClass.
       # Algorithm is as follows, first ingressClassName is considered, if not present, controller looks for ingress.class annotation
       ingressClass: nginx-internal
+
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/port: "10254"
+            prometheus.io/scrape: "true"
 
       service:
         enabled: true
