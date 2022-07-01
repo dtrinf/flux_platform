@@ -10,32 +10,26 @@ spec:
       config:
         ingress:
           enabled: true
-          annotations: {
+          annotations: 
             kubernetes.io/ingress.class: nginx-external
-          }
-          labels: {}
-          hosts: ["alertmanager.eorozco.lifebit.ai"]
-          paths: []
-          tls: []
+          hosts: 
+          - "alertmanager.eorozco.lifebit.ai"
+          paths: /
     prometheus:
       config:
         ingress:
           enabled: true
-          annotations: {
+          annotations: 
             kubernetes.io/ingress.class: nginx-external
-          }
-          labels: {}
-          hosts: ["prometheus.eorozco.lifebit.ai"]
-          paths: []
-          tls: []
+          hosts: 
+          - "prometheus.eorozco.lifebit.ai"
+          paths: /
     grafana:
       config:
         ingress:
           enabled: true
-          annotations: {
+          annotations: 
             kubernetes.io/ingress.class: nginx-external
-          }
-          labels: {}
-          hosts: ["grafana.eorozco.lifebit.ai"]
-          paths: []
-          tls: []
+          hosts: 
+          - "grafana.eorozco.lifebit.ai"
+          paths: /
