@@ -1,8 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - flux-monitoring-grafana-release.yaml
   - flux-monitoring-repository.yaml
+  - flux-monitoring-prometheus-release.yaml
+  - flux-monitoring-grafana-release.yaml
   - flux-monitoring-loki-release.yaml
   # - flux-monitoring-release.yaml
-  - flux-monitoring-prometheus-release.yaml
+  
