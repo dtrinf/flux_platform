@@ -5,3 +5,5 @@ resources:
   - flux-monitoring-repository.yaml
   - flux-monitoring-loki-release.yaml
   - flux-monitoring-release.yaml
+patchesStrategicMerge:
+  - prometheus-values.yaml

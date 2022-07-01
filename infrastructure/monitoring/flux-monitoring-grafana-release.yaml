@@ -15,4 +15,3 @@ spec:
     name: flux-monitoring
   timeout: 1m0s
   wait: true
-

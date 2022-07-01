@@ -1,0 +1,41 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: kube-prometheus-stack
+  namespace: flux-system
+spec:
+  values:
+    alertmanager:
+      enabled: true
+      config:
+        ingress:
+          enabled: true
+          annotations: {
+            kubernetes.io/ingress.class: nginx-external
+          }
+          labels: {}
+          hosts: ["alertmanager.eorozco.lifebit.ai"]
+          paths: []
+          tls: []
+    prometheus:
+      config:
+        ingress:
+          enabled: true
+          annotations: {
+            kubernetes.io/ingress.class: nginx-external
+          }
+          labels: {}
+          hosts: ["prometheus.eorozco.lifebit.ai"]
+          paths: []
+          tls: []
+    grafana:
+      config:
+        ingress:
+          enabled: true
+          annotations: {
+            kubernetes.io/ingress.class: nginx-external
+          }
+          labels: {}
+          hosts: ["grafana.eorozco.lifebit.ai"]
+          paths: []
+          tls: []
