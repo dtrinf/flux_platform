@@ -44,9 +44,9 @@ spec:
         annotations: 
           kubernetes.io/ingress.class: nginx-external
         hosts: 
-        - loki.pro.eorozco.lifebit.ai
-        paths: 
-        - /
+          - host: loki.pro.eorozco.lifebit.ai
+            paths: 
+              - /
       serviceMonitor:
         enabled: true
         additionalLabels:
