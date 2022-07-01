@@ -42,18 +42,18 @@ spec:
           enabled: true
           annotations: 
             kubernetes.io/ingress.class: nginx-external
-          hosts: 
-          - "alertmanager.eks.pro.eorozco.lifebit.ai"
-          paths: /
+          # hosts: 
+          # - "alertmanager.eks.pro.eorozco.lifebit.ai"
+          # paths: /
     prometheus:
       config:
         ingress:
           enabled: true
           annotations: 
             kubernetes.io/ingress.class: nginx-external
-          hosts: 
-          - "prometheus.eks.pro.eorozco.lifebit.ai"
-          paths: /
+          # hosts: 
+          # - "prometheus.eks.pro.eorozco.lifebit.ai"
+          # paths: /
       prometheusSpec:
         retention: 24h
         resources:
@@ -70,5 +70,5 @@ spec:
           enabled: true
           annotations: 
             kubernetes.io/ingress.class: nginx-external
-          hosts: []
-          paths: /grafana/
+          # hosts: []
+          # paths: /grafana/
