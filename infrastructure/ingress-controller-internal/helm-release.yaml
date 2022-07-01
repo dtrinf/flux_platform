@@ -22,4 +22,30 @@ spec:
         namespace: ingress-internal
       interval: 100m
   values:
-    replicaCount: 2
+    controller:
+
+      ingressClassResource:
+        # -- Name of the ingressClass
+        name: nginx-internal
+        enabled: true
+        default: false
+        controllerValue: "k8s.io/internal-ingress-nginx"
+
+      # -- For backwards compatibility with ingress.class annotation, use ingressClass.
+      # Algorithm is as follows, first ingressClassName is considered, if not present, controller looks for ingress.class annotation
+      ingressClass: nginx-internal
+
+      service:
+        enabled: true
+
+        external:
+          enabled: false
+
+        internal:
+          # -- Enables an additional internal load balancer (besides the external one).
+          enabled: true
+          # -- Annotations are mandatory for the load balancer to come up. Varies with the cloud service.
+          annotations: 
+            service.beta.kubernetes.io/aws-load-balancer-scheme: "internal"
+            service.beta.kubernetes.io/aws-load-balancer-type: "external"
+            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
