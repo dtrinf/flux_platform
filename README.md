@@ -15,63 +15,115 @@
  │   │                                    │     │                                   │     │                                     │   │
  │   └─┬──────────────────────────────────┘     └─┬─────────────────────────────────┘     └─┬───────────────────────────────────┘   │
  │     │                                          │                                         │                                       │
- │     ├─► {cluster1}                             ├─► notifications                         └─► cloudOS-apps                        │
- │     │    │                                     │   │                                         │                                   │
- │     │    ├─► flux-system                       │   ├─► kustomization.yaml                    ├─► {client1}                       │
- │     │    │   │                                 │   │                                         │   │                               │
- │     │    │   ├─► kustomization.yaml            │   ├─► deployment.yaml                       │   ├─► dev                         │
- │     │    │   │                                 │   │                                         │   │   │                           │
- │     │    │   ├─► gotk-sync.yaml                │   └─► alerts.yaml                           │   │   ├─► kustomization.yaml      │
- │     │    │   │                                 │                                             │   │   │                           │
- │     │    │   └─► gotk-components.yaml          ├─► chartmuseum                               │   │   └─► repo-path.yaml          │
- │     │    │                                     │   │                                         │   │                               │
- │     │    ├─► infrastructure.yaml               │   ├─► kustomization.yaml                    │   ├─► qa                          │
- │     │    │                                     │   │                                         │   │   │                           │
- │     │    └─► tenants.yaml                      │   ├─► repository.yaml                       │   │   ├─► kustomization.yaml      │
- │     │                                          │   │                                         │   │   │                           │
- │     ├─► {cluster2}                             │   └─► deployment.yaml                       │   │   └─► repo-path.yaml          │
- │     │    │                                     │                                             │   │                               │
- │     │    ├─► flux-system                       ├─► ingress-internal                          │   └─► pro                         │
- │     │    │   │                                 │   │                                         │       │                           │
- │     │    │   ├─► kustomization.yaml            │   ├─► kustomization.yaml                    │       ├─► kustomization.yaml      │
- │     │    │   │                                 │   │                                         │       │                           │
- │     │    │   ├─► gotk-sync.yaml                │   ├─► helm-repository.yaml                  │       └─► repo-path.yaml          │
- │     │    │   │                                 │   │                                         │                                   │
- │     │    │   └─► gotk-components.yaml          │   └─► helm-deployment.yaml                  ├─► {client2}                       │
- │     │    │                                     │                                             │   │                               │
- │     │    ├─► infrastructure.yaml               └─► ingress-external                          │   ├─► dev                         │
- │     │    │                                         │                                         │   │   │                           │
- │     │    └─► tenants.yaml                          ├─► kustomization.yaml                    │   │   ├─► kustomization.yaml      │
- │     │                                              │                                         │   │   │                           │
- │     └─► {clusterN}                                 ├─► helm-repository.yaml                  │   │   └─► repo-path.yaml          │
- │          │                                         │                                         │   │                               │
- │          ├─► flux-system                           └─► helm-deployment.yaml                  │   ├─► qa                          │
- │          │   │                                                                               │   │   │                           │
- │          │   ├─► kustomization.yaml                                                          │   │   ├─► kustomization.yaml      │
- │          │   │                                                                               │   │   │                           │
- │          │   ├─► gotk-sync.yaml                                                              │   │   └─► repo-path.yaml          │
- │          │   │                                                                               │   │                               │
- │          │   └─► gotk-components.yaml                                                        │   └─► pro                         │
- │          │                                                                                   │       │                           │
- │          ├─► infrastructure.yaml                                                             │       ├─► kustomization.yaml      │
- │          │                                                                                   │       │                           │
- │          └─► tenants.yaml                                                                    │       └─► repo-path.yaml          │
+ │     ├─► {cluster1}                             ├─► notifications                         ├─► base                                │
+ │     │    │                                     │   │                                     │   │                                   │
+ │     │    ├─► flux-system                       │   ├─► kustomization.yaml                │   ├─► cloudos-apps                    │
+ │     │    │   │                                 │   │                                     │   │   │                               │
+ │     │    │   ├─► kustomization.yaml            │   ├─► deployment.yaml                   │   │   ├─► kustomization.yaml          │
+ │     │    │   │                                 │   │                                     │   │   │                               │
+ │     │    │   ├─► gotk-sync.yaml                │   └─► alerts.yaml                       │   │   ├─► repository.yaml             │
+ │     │    │   │                                 │                                         │   │   │                               │
+ │     │    │   └─► gotk-components.yaml          ├─► chartmuseum                           │   │   └─► rabc.yaml                   │
+ │     │    │                                     │   │                                     │   │                                   │
+ │     │    ├─► infrastructure.yaml               │   ├─► kustomization.yaml                │   ├─► infra-apps                      │
+ │     │    │                                     │   │                                     │   │   │                               │
+ │     │    └─► tenants.yaml                      │   ├─► repository.yaml                   │   │   ├─► kustomization.yaml          │
+ │     │                                          │   │                                     │   │   │                               │
+ │     ├─► {cluster2}                             │   └─► deployment.yaml                   │   │   ├─► repository.yaml             │
+ │     │    │                                     │                                         │   │   │                               │
+ │     │    ├─► flux-system                       ├─► ingress-internal                      │   │   └─► rabc.yaml                   │
+ │     │    │   │                                 │   │                                     │   │                                   │
+ │     │    │   ├─► kustomization.yaml            │   ├─► kustomization.yaml                │   └─► data-apps                       │
+ │     │    │   │                                 │   │                                     │       │                               │
+ │     │    │   ├─► gotk-sync.yaml                │   ├─► helm-repository.yaml              │       ├─► kustomization.yaml          │
+ │     │    │   │                                 │   │                                     │       │                               │
+ │     │    │   └─► gotk-components.yaml          │   └─► helm-deployment.yaml              │       ├─► repository.yaml             │
+ │     │    │                                     │                                         │       │                               │
+ │     │    ├─► infrastructure.yaml               └─► ingress-external                      │       └─► rabc.yaml                   │
+ │     │    │                                         │                                     │                                       │
+ │     │    └─► tenants.yaml                          ├─► kustomization.yaml                ├─► {client1}                           │
+ │     │                                              │                                     │   │                                   │
+ │     └─► {clusterN}                                 ├─► helm-repository.yaml              │   ├─► dev                             │
+ │          │                                         │                                     │   │   │                               │
+ │          ├─► flux-system                           └─► helm-deployment.yaml              │   │   ├─► cloudos-apps                │
+ │          │   │                                                                           │   │   │   │                           │
+ │          │   ├─► kustomization.yaml                                                      │   │   │   ├─► kustomization.yaml      │
+ │          │   │                                                                           │   │   │   │                           │
+ │          │   ├─► gotk-sync.yaml                                                          │   │   │   └─► repo-path.yaml          │
+ │          │   │                                                                           │   │   │                               │
+ │          │   └─► gotk-components.yaml                                                    │   │   └─► data-apps                   │
+ │          │                                                                               │   │       │                           │
+ │          ├─► infrastructure.yaml                                                         │   │       ├─► kustomization.yaml      │
+ │          │                                                                               │   │       │                           │
+ │          └─► tenants.yaml                                                                │   │       └─► repo-path.yaml          │
+ │                                                                                          │   │                                   │
+ │                                                                                          │   ├─► qa                              │
+ │                                                                                          │   │   │                               │
+ │                                                                                          │   │   ├─► cloudos-apps                │
+ │                                                                                          │   │   │   │                           │
+ │                                                                                          │   │   │   ├─► kustomization.yaml      │
+ │                                                                                          │   │   │   │                           │
+ │                                                                                          │   │   │   └─► repo-path.yaml          │
+ │                                                                                          │   │   │                               │
+ │                                                                                          │   │   └─► data-apps                   │
+ │                                                                                          │   │       │                           │
+ │                                                                                          │   │       ├─► kustomization.yaml      │
+ │                                                                                          │   │       │                           │
+ │                                                                                          │   │       └─► repo-path.yaml          │
+ │                                                                                          │   │                                   │
+ │                                                                                          │   └─► pro                             │
+ │                                                                                          │       │                               │
+ │                                                                                          │       ├─► cloudos-apps                │
+ │                                                                                          │       │   │                           │
+ │                                                                                          │       │   ├─► kustomization.yaml      │
+ │                                                                                          │       │   │                           │
+ │                                                                                          │       │   └─► repo-path.yaml          │
+ │                                                                                          │       │                               │
+ │                                                                                          │       └─► data-apps                   │
+ │                                                                                          │           │                           │
+ │                                                                                          │           ├─► kustomization.yaml      │
+ │                                                                                          │           │                           │
+ │                                                                                          │           └─► repo-path.yaml          │
+ │                                                                                          │                                       │
+ │                                                                                          └─► {client2}                           │
  │                                                                                              │                                   │
- │                                                                                              └─► {client3}                       │
+ │                                                                                              ├─► dev                             │
+ │                                                                                              │   │                               │
+ │                                                                                              │   ├─► infra-apps                  │
+ │                                                                                              │   │   │                           │
+ │                                                                                              │   │   ├─► kustomization.yaml      │
+ │                                                                                              │   │   │                           │
+ │                                                                                              │   │   └─► repo-path.yaml          │
+ │                                                                                              │   │                               │
+ │                                                                                              │   └─► cloudos-apps                │
+ │                                                                                              │       │                           │
+ │                                                                                              │       ├─► kustomization.yaml      │
+ │                                                                                              │       │                           │
+ │                                                                                              │       └─► repo-path.yaml          │
+ │                                                                                              │                                   │
+ │                                                                                              ├─► qa                              │
+ │                                                                                              │   │                               │
+ │                                                                                              │   ├─► infra-apps                  │
+ │                                                                                              │   │   │                           │
+ │                                                                                              │   │   ├─► kustomization.yaml      │
+ │                                                                                              │   │   │                           │
+ │                                                                                              │   │   └─► repo-path.yaml          │
+ │                                                                                              │   │                               │
+ │                                                                                              │   └─► cloudos-apps                │
+ │                                                                                              │       │                           │
+ │                                                                                              │       ├─► kustomization.yaml      │
+ │                                                                                              │       │                           │
+ │                                                                                              │       └─► repo-path.yaml          │
+ │                                                                                              │                                   │
+ │                                                                                              └─► pro                             │
  │                                                                                                  │                               │
- │                                                                                                  ├─► dev                         │
+ │                                                                                                  ├─► infra-apps                  │
  │                                                                                                  │   │                           │
  │                                                                                                  │   ├─► kustomization.yaml      │
  │                                                                                                  │   │                           │
  │                                                                                                  │   └─► repo-path.yaml          │
  │                                                                                                  │                               │
- │                                                                                                  ├─► qa                          │
- │                                                                                                  │   │                           │
- │                                                                                                  │   ├─► kustomization.yaml      │
- │                                                                                                  │   │                           │
- │                                                                                                  │   └─► repo-path.yaml          │
- │                                                                                                  │                               │
- │                                                                                                  └─► pro                         │
+ │                                                                                                  └─► cloudos-apps                │
  │                                                                                                      │                           │
  │                                                                                                      ├─► kustomization.yaml      │
  │                                                                                                      │                           │
