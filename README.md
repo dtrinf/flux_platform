@@ -1,5 +1,87 @@
 # flux_platform
 
+## Schema
+
+``` plain
+ ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+ │                                                                                                                                  │
+ │ flux_platform repository                                                                                                         │
+ │                                                                                                                                  │
+ ├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+ │                                                                                                                                  │
+ │   ┌────────────────────────────────────┐     ┌───────────────────────────────────┐     ┌─────────────────────────────────────┐   │
+ │   │                                    │     │                                   │     │                                     │   │
+ │   │ clusters                           │     │ infrastructure                    │     │ tenants                             │   │
+ │   │                                    │     │                                   │     │                                     │   │
+ │   └─┬──────────────────────────────────┘     └─┬─────────────────────────────────┘     └─┬───────────────────────────────────┘   │
+ │     │                                          │                                         │                                       │
+ │     ├─► {cluster1}                             ├─► notifications                         └─► cloudOS-apps                        │
+ │     │    │                                     │   │                                         │                                   │
+ │     │    ├─► flux-system                       │   ├─► kustomization.yaml                    ├─► {client1}                       │
+ │     │    │   │                                 │   │                                         │   │                               │
+ │     │    │   ├─► kustomization.yaml            │   ├─► deployment.yaml                       │   ├─► dev                         │
+ │     │    │   │                                 │   │                                         │   │   │                           │
+ │     │    │   ├─► gotk-sync.yaml                │   └─► alerts.yaml                           │   │   ├─► kustomization.yaml      │
+ │     │    │   │                                 │                                             │   │   │                           │
+ │     │    │   └─► gotk-components.yaml          ├─► chartmuseum                               │   │   └─► repo-path.yaml          │
+ │     │    │                                     │   │                                         │   │                               │
+ │     │    ├─► infrastructure.yaml               │   ├─► kustomization.yaml                    │   ├─► qa                          │
+ │     │    │                                     │   │                                         │   │   │                           │
+ │     │    └─► tenants.yaml                      │   ├─► repository.yaml                       │   │   ├─► kustomization.yaml      │
+ │     │                                          │   │                                         │   │   │                           │
+ │     ├─► {cluster2}                             │   └─► deployment.yaml                       │   │   └─► repo-path.yaml          │
+ │     │    │                                     │                                             │   │                               │
+ │     │    ├─► flux-system                       ├─► ingress-internal                          │   └─► pro                         │
+ │     │    │   │                                 │   │                                         │       │                           │
+ │     │    │   ├─► kustomization.yaml            │   ├─► kustomization.yaml                    │       ├─► kustomization.yaml      │
+ │     │    │   │                                 │   │                                         │       │                           │
+ │     │    │   ├─► gotk-sync.yaml                │   ├─► helm-repository.yaml                  │       └─► repo-path.yaml          │
+ │     │    │   │                                 │   │                                         │                                   │
+ │     │    │   └─► gotk-components.yaml          │   └─► helm-deployment.yaml                  ├─► {client2}                       │
+ │     │    │                                     │                                             │   │                               │
+ │     │    ├─► infrastructure.yaml               └─► ingress-external                          │   ├─► dev                         │
+ │     │    │                                         │                                         │   │   │                           │
+ │     │    └─► tenants.yaml                          ├─► kustomization.yaml                    │   │   ├─► kustomization.yaml      │
+ │     │                                              │                                         │   │   │                           │
+ │     └─► {clusterN}                                 ├─► helm-repository.yaml                  │   │   └─► repo-path.yaml          │
+ │          │                                         │                                         │   │                               │
+ │          ├─► flux-system                           └─► helm-deployment.yaml                  │   ├─► qa                          │
+ │          │   │                                                                               │   │   │                           │
+ │          │   ├─► kustomization.yaml                                                          │   │   ├─► kustomization.yaml      │
+ │          │   │                                                                               │   │   │                           │
+ │          │   ├─► gotk-sync.yaml                                                              │   │   └─► repo-path.yaml          │
+ │          │   │                                                                               │   │                               │
+ │          │   └─► gotk-components.yaml                                                        │   └─► pro                         │
+ │          │                                                                                   │       │                           │
+ │          ├─► infrastructure.yaml                                                             │       ├─► kustomization.yaml      │
+ │          │                                                                                   │       │                           │
+ │          └─► tenants.yaml                                                                    │       └─► repo-path.yaml          │
+ │                                                                                              │                                   │
+ │                                                                                              └─► {client3}                       │
+ │                                                                                                  │                               │
+ │                                                                                                  ├─► dev                         │
+ │                                                                                                  │   │                           │
+ │                                                                                                  │   ├─► kustomization.yaml      │
+ │                                                                                                  │   │                           │
+ │                                                                                                  │   └─► repo-path.yaml          │
+ │                                                                                                  │                               │
+ │                                                                                                  ├─► qa                          │
+ │                                                                                                  │   │                           │
+ │                                                                                                  │   ├─► kustomization.yaml      │
+ │                                                                                                  │   │                           │
+ │                                                                                                  │   └─► repo-path.yaml          │
+ │                                                                                                  │                               │
+ │                                                                                                  └─► pro                         │
+ │                                                                                                      │                           │
+ │                                                                                                      ├─► kustomization.yaml      │
+ │                                                                                                      │                           │
+ │                                                                                                      └─► repo-path.yaml          │
+ │                                                                                                                                  │
+ │                                                                                                                                  │
+ │                                                                                                                                  │
+ └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
 ## bootstrap
 
 ```shell  
