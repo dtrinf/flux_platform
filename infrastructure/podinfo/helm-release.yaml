@@ -1,8 +1,15 @@
-piVersion: helm.toolkit.fluxcd.io/v2beta1
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: podinfo
+
+---
+ApiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: podinfo
-  namespace: default
+  namespace: podinfo
 spec:
   interval: 1m
   chart:
