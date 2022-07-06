@@ -10,3 +10,4 @@ spec:
     kind: GitRepository
     name: flux-system
   path: ./tenants/staging/flux_apps
+  prune: true
