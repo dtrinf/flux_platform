@@ -5,7 +5,7 @@ metadata:
   namespace: apps
 spec:
   path: ./staging
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
+  # decryption:
+  #   provider: sops
+  #   secretRef:
+  #     name: sops-gpg
