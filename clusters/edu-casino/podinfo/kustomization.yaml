@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - podinfo-repository.yaml
   - podinfo-release.yaml
-  - secrets.yaml
+  # - secrets.yaml
 patches:
   - patch: |-
       apiVersion: autoscaling/v2beta2
