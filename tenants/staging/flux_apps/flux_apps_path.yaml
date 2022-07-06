@@ -5,8 +5,4 @@ metadata:
   name: flux-apps
   namespace: apps
 spec:
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
   path: ./staging
