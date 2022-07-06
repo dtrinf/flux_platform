@@ -9,7 +9,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-gpg
-      namespace: flux-system
   path: ./staging
   serviceAccountName: flux-apps
   interval: 5m
