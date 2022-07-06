@@ -211,7 +211,6 @@ gpg --export-secret-keys --armor "${KEY_FP}" |
 
 gpg --export --armor "${KEY_FP}" > ./clusters/{client}/{env}/.sops.pub.asc
 
-gpg --delete-secret-keys "${KEY_FP}"
 ```
 
 Export Private GPG key and upload it to LastPass
