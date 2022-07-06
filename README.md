@@ -176,3 +176,94 @@ flux create source git flux-monitoring \
 kubectl -n flux-system create secret generic slack-url \
   --from-literal=address={{slack_url}}
 ```
+
+## configure sops
+
+### SOPS Standalon
+
+[FluxCD SOPS](https://fluxcd.io/docs/guides/mozilla-sops/)
+
+Generate secret key (only necessary to be done once for each client):
+
+``` shell
+export KEY_NAME="CLIENT"
+export KEY_COMMENT="flux secrets"
+
+gpg --batch --full-generate-key <<EOF
+%no-protection
+Key-Type: 1
+Key-Length: 4096
+Subkey-Type: 1
+Subkey-Length: 4096
+Expire-Date: 0
+Name-Comment: ${KEY_COMMENT}
+Name-Real: ${KEY_NAME}
+EOF
+
+gpg --list-secret-keys "${KEY_NAME}"
+
+export KEY_FP=$(gpg --list-secret-keys ${KEY_NAME} | grep -A1 "sec " | tail -1 | awk '{print $1}')
+
+gpg --export-secret-keys --armor "${KEY_FP}" |
+  kubectl create secret generic sops-gpg \
+  --namespace=flux-system \
+  --from-file=sops.asc=/dev/stdin
+
+gpg --export --armor "${KEY_FP}" > ./clusters/{client}/{env}/.sops.pub.asc
+
+gpg --delete-secret-keys "${KEY_FP}"
+```
+
+Export Private GPG key and upload it to LastPass
+
+``` shell
+gpg --export-secret-keys --armor "${KEY_FP}" > private.gpg
+
+# Upload private.gpg file to LastPass
+
+rm -rf private.gpg
+```
+
+Import Private key into our local machine, this is necessary to be able to encrypt secrets
+
+```shell
+gpg --import private.gpg
+```
+
+Use kustomization with sops secrets
+
+``` yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: secret
+  namespace: app
+spec:
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
+```
+
+### SOPS KMS
+
+[FluxCD SOPS](https://fluxcd.io/docs/guides/mozilla-sops/#encrypting-secrets-using-various-cloud-providers)
+
+[EKSCTL](https://eksctl.io/usage/iamserviceaccounts/)
+
+``` shell
+eksctl utils associate-iam-oidc-provider --cluster=<clusterName>
+
+eksctl create iamserviceaccount \
+  --role-only \
+  --name=kustomize-controller \
+  --namespace=flux-system \
+  --attach-policy-arn=<policyARN> \
+  --cluster=<clusterName>
+
+kubectl -n flux-system annotate serviceaccount kustomize-controller \
+  --field-manager=flux-client-side-apply \
+  eks.amazonaws.com/role-arn='arn:aws:iam::<ACCOUNT_ID>:role/<KMS-ROLE-NAME>'
+
+kubectl -n flux-system rollout restart deployment/kustomize-controller
+```
