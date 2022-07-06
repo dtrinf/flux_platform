@@ -15,9 +15,9 @@ spec:
   interval: 5m
   values:
     replicaCount: 4
-    ui: 
-    - name: message
-      valueFrom:
-        secretKeyRef:
-          name: podinfo
-          key: uimessage
+    # ui: 
+    # - name: message
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: podinfo
+    #       key: uimessage
