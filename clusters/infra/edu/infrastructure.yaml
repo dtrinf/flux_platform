@@ -110,9 +110,6 @@ metadata:
   name: monitoring
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: ingress-external
-    - name: ingress-internal
   interval: 5m0s
   sourceRef:
     kind: GitRepository
