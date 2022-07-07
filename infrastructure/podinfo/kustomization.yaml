@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 - helm-release.yaml
 - helm-repo.yaml
+- test_secret.yaml
 - secrets2.yaml
