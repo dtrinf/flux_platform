@@ -28,5 +28,5 @@ spec:
   valuesFrom:
     - kind: Secret
       name: testsecret
-      valuesKey: user
+      valuesKey: values.yaml
 
