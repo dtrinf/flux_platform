@@ -22,7 +22,4 @@ spec:
     name: flux-apps
   prune: true
   validation: client
-  # decryption:
-  #   provider: sops
-  #   secretRef:
-  #     name: sops-gpg
+  
