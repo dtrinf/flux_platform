@@ -7,18 +7,18 @@ spec:
   values:
     alertmanager:
       ingress:
-        enabled: false
+        enabled: true
         annotations: 
-          kubernetes.io/ingress.class: nginx-external
+          kubernetes.io/ingress.class: nginx-internal
         hosts: 
         - alertmanager.pro.eorozco.lifebit.ai
         paths: 
         - /
     grafana:
       ingress:
-        enabled: false
+        enabled: true
         annotations: 
-          kubernetes.io/ingress.class: nginx-external
+          kubernetes.io/ingress.class: nginx-internal
         hosts: 
         - grafana.pro.eorozco.lifebit.ai
         paths: 
