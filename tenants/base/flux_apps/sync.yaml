@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
   name: flux-apps
-  namespace: apps
+  namespace: flux-system
 spec:
   interval: 1m
   url: https://github.com/dtrinf/flux_apps
@@ -13,16 +13,15 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
   name: flux-apps
-  namespace: apps
+  namespace: flux-system
 spec:
-  serviceAccountName: flux-apps
   interval: 5m
   sourceRef:
     kind: GitRepository
     name: flux-apps
   prune: true
-  validation: client
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-gpg
+  # validation: client
+  # decryption:
+  #   provider: sops
+  #   secretRef:
+  #     name: sops-gpg
