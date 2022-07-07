@@ -266,3 +266,7 @@ kubectl -n flux-system annotate serviceaccount kustomize-controller \
 
 kubectl -n flux-system rollout restart deployment/kustomize-controller
 ```
+
+### Use secrets to values
+
+https://fluxcd.io/docs/components/helm/helmreleases/#values-overrides

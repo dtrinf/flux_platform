@@ -9,7 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/ingress-controller-internal
+  path: ./infrastructure/base/ingress-controller-internal
   prune: true
   timeout: 10m
 ---
@@ -24,7 +24,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/ingress-controller-external
+  path: ./infrastructure/base/ingress-controller-external
   prune: true
   timeout: 10m
 ---
@@ -39,7 +39,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/monitoring
+  path: ./infrastructure/base/monitoring
   prune: true
   timeout: 10m
 ---
@@ -54,7 +54,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/podinfo
+  path: ./infrastructure/base/podinfo
   prune: true
   timeout: 1m
   decryption:

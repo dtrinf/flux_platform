@@ -1,0 +1,54 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  values:
+    alertmanager:
+      ingress:
+        enabled: false
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts: 
+        - alertmanager.pro.eorozco.lifebit.ai
+        paths: 
+        - /
+    grafana:
+      ingress:
+        enabled: false
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts: 
+        - grafana.pro.eorozco.lifebit.ai
+        paths: 
+        - /
+    prometheus:
+      ingress:
+        enabled: false
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts: 
+        - prometheus.pro.eorozco.lifebit.ai
+        paths: 
+        - /
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: monitoring
+spec:
+  values:
+    loki:
+      enabled: true
+      isDefault: false
+      ingress:
+        enabled: false
+        annotations: 
+          kubernetes.io/ingress.class: nginx-external
+        hosts:
+          - host: loki.pro.eorozco.lifebit.ai
+            paths: 
+              - /
