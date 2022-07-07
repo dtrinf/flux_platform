@@ -5,7 +5,7 @@ metadata:
   name: flux-apps
   namespace: apps
 spec:
-  path: ./staging
+  path: ./infra/edu
   decryption:
     provider: sops
     secretRef:

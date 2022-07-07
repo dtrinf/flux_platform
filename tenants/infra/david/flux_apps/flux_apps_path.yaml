@@ -4,4 +4,4 @@ metadata:
   name: flux-apps
   namespace: apps
 spec:
-  path: ./production
+  path: ./infra/david

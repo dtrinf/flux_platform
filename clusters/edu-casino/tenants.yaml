@@ -9,5 +9,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./tenants/staging/flux_apps
+  path: ./tenants/infra/edu/flux_apps
   prune: true
