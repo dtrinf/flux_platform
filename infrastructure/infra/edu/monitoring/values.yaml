@@ -25,9 +25,9 @@ spec:
         - /
     prometheus:
       ingress:
-        enabled: false
+        enabled: true
         annotations: 
-          kubernetes.io/ingress.class: nginx-external
+          kubernetes.io/ingress.class: nginx-internal
         hosts: 
         - prometheus.pro.eorozco.lifebit.ai
         paths: 
@@ -42,8 +42,6 @@ metadata:
 spec:
   values:
     loki:
-      enabled: true
-      isDefault: false
       ingress:
         enabled: false
         annotations: 
