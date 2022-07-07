@@ -23,8 +23,8 @@ spec:
       interval: 1m
   values:
     replicaCount: 2
-    ui:
-      message: "david"
+    #ui:
+      #message: "david"
   valuesFrom:
     - kind: Secret
       name: testsecret
