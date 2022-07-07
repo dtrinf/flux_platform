@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./clusters/edu-casino
+  path: ./clusters/infra/edu
   prune: true
   sourceRef:
     kind: GitRepository
