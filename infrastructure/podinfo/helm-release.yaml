@@ -25,4 +25,8 @@ spec:
     replicaCount: 2
     ui:
       message: "david"
+  valuesFrom:
+    - kind: Secret
+      name: testsecret
+      valuesKey: user
 
