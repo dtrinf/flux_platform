@@ -21,7 +21,7 @@ spec:
     kind: GitRepository
     name: flux-apps
   prune: true
-  # validation: client
+  validation: client
   # decryption:
   #   provider: sops
   #   secretRef:
